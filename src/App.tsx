@@ -41,12 +41,12 @@ function App() {
       opacity: 0,
       y: 0,
     }, {
-      delay: 2,
+      delay: 3,
       scrollTrigger: {
         trigger: "#scroll-down-animation",
         toggleActions: "restart pause resume none",
       },
-      duration: 2,
+      duration: 3,
       ease: "power4.inOut",
       opacity: 1,
       y: 0,
@@ -60,10 +60,10 @@ function App() {
         amount: 0.5,
       },
       scrollTrigger: {
-        trigger: "#char2",
+        trigger: "#char",
         toggleActions: "restart pause resume none",
       },
-      delay: 0.5,
+      delay: 1,
       duration: 2,
       ease: "power4.inOut",
       opacity: 1,
@@ -71,7 +71,7 @@ function App() {
     });
     gsap.fromTo("#char2", {
       opacity: 0,
-      y: -100,
+      y: 100,
     }, {
       stagger: {
         amount: 0.5,
@@ -80,38 +80,78 @@ function App() {
         trigger: "#char2",
         toggleActions: "restart pause resume none",
       },
-      delay: 0.5,
+      delay: 2,
       duration: 2,
       ease: "power4.inOut",
       opacity: 1,
       y: 0,
     });
 
+    const timeline = gsap.timeline();
+
+    timeline.to('#hello', {
+      opacity: 0,
+      y: 100,
+      duration: 2,
+
+    });
+    ScrollTrigger.create({
+      trigger: '#hello',
+      start: 'top 20%', // Adjust this value as needed
+      end: 'bottom 20%',
+      animation: timeline,
+      toggleActions: 'play none none none',
+      scrub: 1,
+    });
+
+    const timeline2 = gsap.timeline();
+    timeline2.to('#imRasmus', {
+      opacity: 0,
+      y: 100,
+      duration: 2,
+
+    });
+    ScrollTrigger.create({
+      trigger: '#imRasmus',
+      start: 'top 30%', // Adjust this value as needed
+      end: 'bottom 30%',
+      animation: timeline2,
+      toggleActions: 'play none none none',
+      scrub: 1,
+    });
+
+    const timeline3 = gsap.timeline();
+    timeline2.to('#scroll-down-animation', {
+      opacity: 0,
+      y: 140,
+      duration: 2,
+    });
+    ScrollTrigger.create({
+      trigger: '#scroll-down-animation',
+      start: 'top 40%', // Adjust this value as needed
+      end: 'bottom 40%',
+      animation: timeline3,
+      toggleActions: 'play none none none',
+      scrub: 1,
+    });
+
   }, []);
-
-
 
 
   return (
     <div className="flex flex-col h-full overflow-x-hidden overflow-y-hidden" id="main-body">
-      <div className="absolute top-0 z-50 sm:px-16 px-6 flex justify-center items-center w-full h-24 overflow-y-hidden">
-        <div className="text-black font-semibold w-3/12 ">
+      <div className="absolute top-0 z-50 sm:px-16 px-6 flex justify-center items-center w-full h-24 overflow-y-hidden border-b border-black">
+        <div className="text-black font-normal sm:w-3/12 w-9/12 font-roboto-condensed tracking-normal">
           RASMUS JANNERUP, NÆSTVED, DENMARK
         </div>
-        <nav className="flex w-6/12 items-center justify-center space-x-4 text-black font-bold">
-          <a href="#" className="hover:bg-black py-2 px-4 hover:text-white transition-all duration-300 rounded-md">
-            <p className="">ABOUT</p>
-          </a>
-          <a href="#" className="hover:bg-black py-2 px-4 hover:text-white transition-all duration-300 rounded-md">
-            <p className="">WORK</p>
-          </a>
-          <a href="#" className="hover:bg-black py-2 px-4 hover:text-white transition-all duration-300 rounded-md">
-            <p className="">CONTACT</p>
-          </a>
+        <nav className="sm:flex hidden sm:w-6/12 items-center justify-center space-x-4 text-black font-bold">
+
         </nav>
-        <div className="w-3/12 flex items-center justify-end">
-          <p>&copy;</p>
-          <p className="text-black font-normal ml-2">
+        <div className="sm:w-3/12 w-3/12 flex items-center justify-end">
+          <p className="text-black font-light font-roboto-condensed  ml-2">
+            &copy;
+          </p>
+          <p className="text-black font-light font-roboto-condensed  ml-2">
             2023
           </p>
         </div>
@@ -120,21 +160,20 @@ function App() {
         <div className="flex w-screen h-screen absolute px-12">
           <div className="flex flex-col w-full">
             <div className="flex flex-1 flex-col items-center justify-center">
-              <div className="inline-flex text-9xl text-black font-bold font-roboto-condensed mb-10" id="hello">
+              <div className="inline-flex sm:text-9xl  text-6xl text-black font-bold font-roboto-condensed sm:mb-10 mb-3" id="hello">
                 <p id="char">H</p>
                 <p id="char">E</p>
                 <p id="char">L</p>
                 <p id="char">L</p>
                 <p id="char">O</p>
+                <p id="char">&nbsp;</p>
+                <p id="char">T</p>
+                <p id="char">H</p>
+                <p id="char">E</p>
+                <p id="char">R</p>
+                <p id="char">E</p>
               </div>
-              <div className="w-40 h-40 text-blue-300" id="scroll-down-animation">
-                <Lottie
-                  animationData={animationData}
-                  height={25}
-                  width={25}
-                />
-              </div>
-              <div className="inline-flex text-9xl text-black font-bold font-roboto-condensed mt-10" id="hello">
+              <div className="inline-flex sm:text-9xl text-6xl text-black font-bold font-roboto-condensed sm:mb-10 mt-3" id="imRasmus">
                 <p id="char2">I</p>
                 <p id="char2">'</p>
                 <p id="char2">M</p>
@@ -146,6 +185,12 @@ function App() {
                 <p id="char2">U</p>
                 <p id="char2">S</p>
               </div>
+              <Lottie
+                id="scroll-down-animation"
+                className="sm:w-32 sm:h-32 w-20 h-20 "
+                animationData={animationData}
+              />
+
 
             </div>
 
@@ -160,13 +205,10 @@ function App() {
             <div className="bg-black h-full w-1/6" id="bar" />
             <div className="bg-black h-full w-1/6" id="bar" />
             <div className="bg-black h-full w-1/6" id="bar" />
-
           </div>
         </div>
       </div>
-
       <div className="h-screen bg-white hidden" id="second">
-
       </div>
       <CustomCursor2 />
     </div>

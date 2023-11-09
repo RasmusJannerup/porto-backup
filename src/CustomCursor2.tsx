@@ -7,8 +7,13 @@ const CustomCursor2: React.FC = () => {
     useEffect(() => {
         const updateCursorPosition = (e: MouseEvent) => {
             const { clientX: x, clientY: y } = e;
-            setTargetPosition({ x, y });
+            const scrollPositionY = window.scrollY;
+            var scrollPositionYwithUpdatedCursor = scrollPositionY + y;
+
+            setTargetPosition({ x, y: scrollPositionYwithUpdatedCursor });
         };
+
+
 
         document.addEventListener('mousemove', updateCursorPosition);
 
@@ -16,6 +21,7 @@ const CustomCursor2: React.FC = () => {
             document.removeEventListener('mousemove', updateCursorPosition);
         };
     }, []);
+
 
     const lerp = (start: number, end: number, t: number) => {
         return start * (1 - t) + end * t;
