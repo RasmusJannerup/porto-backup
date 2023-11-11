@@ -8,6 +8,9 @@ export default {
     extend: {
       fontFamily: {
         'roboto-condensed': ['Roboto Condensed', 'sans-serif'],
+      },
+      fontSize: {
+        '10xl': '10rem',
       }
     },
   },
