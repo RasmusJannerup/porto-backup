@@ -18,7 +18,7 @@ export const Second = () => {
         });
         ScrollTrigger.create({
             trigger: '#about-me',
-            start: "20% top",
+            start: "80% top",
             end: `+=${innerHeight}`,
             animation: timeline,
             scrub: true,
